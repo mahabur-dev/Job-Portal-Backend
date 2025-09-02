@@ -13,7 +13,7 @@ Route::prefix('v1')->group(function () {
     //Authentication
     Route::post('/login', [UserController::class, 'login']);
     Route::post('/register', [UserController::class, 'store']);
-    Route::delete('/logout', [UserController::class, 'destroy'])->middleware('auth:api');
+    Route::post('/logout', [UserController::class, 'logout'])->middleware('auth:api');
 
      Route::prefix('users')->middleware(['auth:api', 'role:admin,recruiter'])->group(function () {
 
@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/', [UserController::class, 'index']);
         Route::get('/{id}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
+        Route::delete('/{id}', [UserController::class, 'destroy']);
     });
 
     //Company Management (Admin only)
