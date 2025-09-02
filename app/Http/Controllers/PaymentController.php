@@ -18,7 +18,7 @@ class PaymentController extends Controller
         $request->validate([
             'job_id'    => 'required|exists:jobs,id',         
             'amount'    => 'required|numeric|min:1',         
-            'upload_cv' => 'required|file|max:20480',       
+            'upload_cv' => 'required|file|mimes:pdf,doc,docx|max:20480',
         ]);
 
         $user    = Auth::user();
